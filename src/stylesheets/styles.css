@@ -1,0 +1,42 @@
+body {
+    background-color: #DFDADD;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+}
+
+.header {
+    background-color: #061B2D;
+    height: 800px;
+}
+
+.nav {
+    color: #DAD3D7;
+}
+
+.header-title {
+    color: #DAD3D7;
+    font-size: 60px;
+    padding-top: 30%;
+}
+
+.header-subtitle {
+    color: #E59964;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.about{
+    background-color: #F0F1F3;
+    height: 200px;
+    padding: 10% 15%;
+}
+
+.demo {
+    height: 400px;
+}
+
+.footer {
+    background-color: #F0F1F3;
+    height: 400px;
+}
