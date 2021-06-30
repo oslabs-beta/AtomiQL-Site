@@ -40,3 +40,13 @@ body {
     background-color: #F0F1F3;
     height: 400px;
 }
+
+.team {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.profile {
+    padding: 10px;
+}
