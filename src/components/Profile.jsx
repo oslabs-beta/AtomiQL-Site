@@ -1,5 +1,4 @@
 import React from 'react';
-import labels from './../assets/labels.js';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 

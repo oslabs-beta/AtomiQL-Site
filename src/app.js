@@ -1,27 +1,12 @@
 import React from 'react';
-import Profile from './components/Profile.jsx';
+import Header from './containers/Header.jsx';
+import About from './containers/About.jsx';
+import Demo from './containers/Demo.jsx';
+import Footer from './containers/Footer.jsx';
 import './stylesheets/styles.css';
-import labels from './assets/labels.js';
-import { Button, Typography, AppBar, Toolbar, Tabs, Tab } from '@material-ui/core';
+import { Typography, AppBar, Toolbar, Tabs, Tab } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
-const StyledButton = withStyles({
-    root: {
-      background: '#051522',
-      borderRadius: 20,
-      border: '1px solid white',
-      color: '#F0F1F3',
-      height: 40,
-      fontSize: 16,
-      margin: '20px',
-      padding: '0 30px'
-    },
-    label: {
-      textTransform: 'capitalize',
-    },
-  })(Button);
 
 const StyledAppBar = withStyles({
     root: {
@@ -76,52 +61,10 @@ class App extends React.Component {
                 </StyledTabs>
             </Toolbar>
         </StyledAppBar>
-        <div id="header">
-            <img className="header-logo" src={labels.header.logo} />
-            <div className="header-title">
-                {labels.header.headTitle}
-            </div>
-            <div className="header-subtitle">
-                {labels.header.headSubtitle}
-            </div>
-            <StyledButton className="btnStart">Get Started</StyledButton>
-            <a href="#about">
-                {<ExpandMoreIcon className="btnExpand" style={{ fontSize: 50 }}/>}
-            </a>
-        </div>
-        <div id="about">
-            {labels.about}
-        </div>
-        <div id="demo">
-            demo placeholder
-        </div>
-        <div id="footer">
-            {labels.team.title}
-            <div className="team">
-                {labels.team.members.map((member) => 
-                    <Profile photo={member.photo}
-                        name={member.name}
-                        github={member.github}
-                        title={member.title}
-                        githubURL={member.githubURL}
-                        linkedinURL={member.linkedinURL}
-                    />
-                )}
-            </div>
-            <div className="footer-links">
-                {labels.footer.linkSections.map((section, el) => 
-                    <div className="footer-link-section">
-                        {section}
-                        {labels.footer.links[el].map((link) => 
-                            <a href={link.linkURL}>{link.title}</a>
-                        )}
-                    </div>
-                )}
-            </div>
-            <div className="footer-copyright">
-                {labels.footer.copyright}
-            </div>
-        </div>
+        <Header />
+        <About />
+        <Demo />
+        <Footer />
     </>
   );
  }
