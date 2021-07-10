@@ -1,5 +1,5 @@
 import React from 'react';
-import labels from './../assets/labels.js';
+import labels from './../../public/assets/labels.js';
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
