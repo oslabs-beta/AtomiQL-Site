@@ -1,5 +1,5 @@
 import React from 'react';
-import labels from './../assets/labels.js';
+import labels from './../../public/assets/labels.js';
 import Profile from './../components/Profile.jsx';
 
 class Footer extends React.Component {

@@ -3,7 +3,7 @@ import Header from './containers/Header.jsx';
 import About from './containers/About.jsx';
 import Demo from './containers/Demo.jsx';
 import Footer from './containers/Footer.jsx';
-import './stylesheets/styles.css';
+import './../public/stylesheets/styles.css';
 import { Typography, AppBar, Toolbar, Tabs, Tab } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import GitHubIcon from '@material-ui/icons/GitHub';

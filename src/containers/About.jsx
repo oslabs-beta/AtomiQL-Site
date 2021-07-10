@@ -1,5 +1,5 @@
 import React from 'react';
-import labels from './../assets/labels.js';
+import labels from './../../public/assets/labels.js';
 
 class About extends React.Component {
     render() {
