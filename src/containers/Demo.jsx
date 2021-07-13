@@ -1,11 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useState, useLayoutEffect, useEffect } from 'react';
 import scroller from '../libraries/scroller';
 import { ScrollerAPI } from '../api/api.js';
 import * as d3 from 'd3';
 
+export const PROPORTION_RIGHT = 0.6;
+export const PROPORTION_LEFT = 0.3;
+
+function useWindowSize() {
+  const [size, setSize] = useState([window.innerWidth * PROPORTION_RIGHT, window.innerHeight]);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
+}
+
+
 const Demo = () => {
+  const [width, height] = useWindowSize();
+  const [visualsState, setVisuals] = useState({ setWidth: () => {} });
+
   useEffect(() => {
-    const visuals = new ScrollerAPI();
+    visualsState.setWidth(width)
+  }, [width])
+
+  useEffect(() => {
+    const visuals = new ScrollerAPI(width);
+    setVisuals(visuals);
     let scroll = scroller().container(d3.select('#graphic'));
     scroll();
 
@@ -87,15 +112,15 @@ const Demo = () => {
               state updates, leading to meaningful performance and user
               experience benefits compared to other GraphQL clients.
             </p>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
           </section>
         </div>
         <div id="vis"></div>

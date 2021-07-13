@@ -4,17 +4,22 @@ import { data } from '../data/graph';
 import { tree } from '../data/graph2';
 
 export class ScrollerAPI {
-  constructor() {
+  constructor(width) {
     this.simulation = undefined;
     this.nodes = undefined;
+    this.windowWidth = undefined;
     this.margin = { left: 170, top: 50, bottom: 50, right: 20 };
-    this.width = 1000 - this.margin.left - this.margin.right;
+    // this.width = 1000 - this.margin.left - this.margin.right;
+    this.width = width;
+    console.log('INITIAL WIDTH',this.width);
     this.height = 950 - this.margin.top - this.margin.bottom;
     this.svg = d3
       .select('#vis')
       .append('svg')
       .attr('width', this.width)
       .attr('height', this.height)
+      // .attr('width', 1024)
+      // .attr('height', 900)
       .attr('opacity', 1)
       .append('g')
       .attr('class', 'everything');
@@ -25,6 +30,14 @@ export class ScrollerAPI {
     this.draw4 = this.draw4.bind(this);
     this.currentScreen = 1;
     this.runBlink = false;
+  }
+
+  setWidth(width) {
+    console.log('setting width to', width);
+    this.width = width;
+    this.svg
+    .select('#vis svg')
+    .attr('opacity',0)
   }
 
   loadDrawing1() {
@@ -72,9 +85,6 @@ export class ScrollerAPI {
     const treeLayout = d3.tree();
     treeLayout.size([800, 300]);
     treeLayout(root);
-
-    var Gen = d3.line()
-    .curve(d3.curveCardinalOpen);
 
     // Links
     this.svg
