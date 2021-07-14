@@ -1,6 +1,6 @@
 export default {
   header: {
-    logo: "./../public/assets/img/atomiql-logo.png",
+    logo: "/public/assets/img/atomiql-logo.png",
     headTitle: "High performance meets scalable flexibility",
     headSubtitle: "GraphQL client designed for Jotai",
     btnStart: "Get Started",
@@ -11,7 +11,7 @@ export default {
     title: "Meet the Team",
     members: [
       {
-          photo: "./../public/assets/img/pat.png",
+          photo: "/public/assets/img/pat.png",
           name: "Patrick Liu",
           github: "@ptrkliu",
           title: "Software Engineer",
@@ -19,7 +19,7 @@ export default {
           linkedinURL: "https://www.linkedin.com/in/ptrkl/",
       },
       {
-          photo: "./../public/assets/img/paulo.png",
+          photo: "/public/assets/img/paulo.png",
           name: "Paulo Choi",
           github: "@paulochoi",
           title: "Software Engineer",
@@ -27,7 +27,7 @@ export default {
           linkedinURL: "https://www.linkedin.com/in/paulochoi/",
       },
       {
-          photo: "./../public/assets/img/thomas.png",
+          photo: "/public/assets/img/thomas.png",
           name: "Thomas Harper",
           github: "@tommyrharper",
           title: "Software Engineer",
@@ -35,7 +35,7 @@ export default {
           linkedinURL: "https://www.linkedin.com/in/thomas-robert-harper/",
       },
       {
-          photo: "./../public/assets/img/xiao.png",
+          photo: "/public/assets/img/xiao.png",
           name: "Xiaotong Li",
           github: "@xiaotongli",
           title: "Software Engineer",
@@ -45,7 +45,7 @@ export default {
     ],
   },
   footer: {
-    linkSections: ["Product", "Getting Started", "Follow Us"],
+    linkSections: ["Product", "Getting Started", "Social Media"],
     links: [
       [
         {
