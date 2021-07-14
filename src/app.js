@@ -13,7 +13,7 @@ const StyledAppBar = withStyles({
       background: '#051522',
       color: '#E59964',
       height: 60,
-      padding: '0 10%',
+      padding: '0 5%',
       fontSize: 20,
       fontWeight: 'bold',
       boxShadow: 'none',
@@ -50,7 +50,7 @@ class App extends React.Component {
         <StyledAppBar position="fixed">
             <Toolbar>
                 <Typography variant="h6" color="inherit">
-                    <a href="#header" style={{ color: "inherit", textDecoration: "none" }}>AtomiQL</a>
+                    <a href="#header" style={{ color: "inherit", textDecoration: "none", paddingLeft: "30px" }}>AtomiQL</a>
                 </Typography>
                 <StyledTabs>
                     <StyledTab label="About" href="#about" />
