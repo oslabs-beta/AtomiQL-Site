@@ -1,13 +1,13 @@
 import * as d3 from 'd3';
 
 export default function scroller() {
-  let container = d3.select('#graphic');
+  let container = d3.select('#demo');
   let dispatch = d3.dispatch('active', 'progress');
   let sections = d3.selectAll('.step');
   let sectionPositions;
 
   let currentIndex = -1;
-  let containerStart = 1300;
+  let containerStart = 1000;
 
   function scroll() {
     d3.select(window)
@@ -53,7 +53,7 @@ export default function scroller() {
   }
 
   scroll.container = function (value) {
-    if (arguments.legth === 0) {
+    if (arguments.length === 0) {
       return container;
     }
     container = value;

@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './containers/Header.jsx';
 import About from './containers/About.jsx';
 import Demo from './containers/Demo.jsx';
+import RenderCount from './containers/RenderCount.jsx';
 import Footer from './containers/Footer.jsx';
 import './../public/stylesheets/styles.css';
 import { Typography, AppBar, Toolbar, Tabs, Tab } from '@material-ui/core';
@@ -13,7 +14,7 @@ const StyledAppBar = withStyles({
       background: '#051522',
       color: '#E59964',
       height: 60,
-      padding: '0 5%',
+      padding: '0 10%',
       fontSize: 20,
       fontWeight: 'bold',
       boxShadow: 'none',
@@ -50,7 +51,7 @@ class App extends React.Component {
         <StyledAppBar position="fixed">
             <Toolbar>
                 <Typography variant="h6" color="inherit">
-                    <a href="#header" style={{ color: "inherit", textDecoration: "none", paddingLeft: "30px" }}>AtomiQL</a>
+                    <a href="#header" style={{ color: "inherit", textDecoration: "none" }}>AtomiQL</a>
                 </Typography>
                 <StyledTabs>
                     <StyledTab label="About" href="#about" />
@@ -64,6 +65,7 @@ class App extends React.Component {
         <Header />
         <About />
         <Demo />
+        <RenderCount/>
         <Footer />
     </>
   );

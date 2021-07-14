@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import { interpolatezoom, transition, zoomIdentity, zoomTransform } from 'd3';
+import { transition, event } from 'd3';
 import { data } from '../data/graph';
 import { tree } from '../data/graph2';
 
@@ -8,18 +8,14 @@ export class ScrollerAPI {
     this.simulation = undefined;
     this.nodes = undefined;
     this.windowWidth = undefined;
-    this.margin = { left: 170, top: 50, bottom: 50, right: 20 };
-    // this.width = 1000 - this.margin.left - this.margin.right;
+    this.margin = { left: 170, top: 50, bottom: 50, right: 50 };
     this.width = width;
-    console.log('INITIAL WIDTH',this.width);
     this.height = 950 - this.margin.top - this.margin.bottom;
     this.svg = d3
       .select('#vis')
       .append('svg')
-      .attr('width', this.width)
+      .attr('width', this.width - this.margin.right)
       .attr('height', this.height)
-      // .attr('width', 1024)
-      // .attr('height', 900)
       .attr('opacity', 1)
       .append('g')
       .attr('class', 'everything');
@@ -33,11 +29,8 @@ export class ScrollerAPI {
   }
 
   setWidth(width) {
-    console.log('setting width to', width);
     this.width = width;
-    this.svg
-    .select('#vis svg')
-    .attr('opacity',0)
+    this.svg.select('#vis svg').attr('opacity', 0);
   }
 
   loadDrawing1() {
@@ -83,13 +76,13 @@ export class ScrollerAPI {
     var root = d3.hierarchy(data);
 
     const treeLayout = d3.tree();
-    treeLayout.size([800, 300]);
+    treeLayout.size([this.width - this.margin.right, 300]);
     treeLayout(root);
 
     // Links
     this.svg
       .append('g')
-      .attr('transform', `translate(50,100)`)
+      .attr('transform', `translate(20,100)`)
       .attr('class', 'tree')
       .append('g')
       .attr('class', 'links')
@@ -97,7 +90,7 @@ export class ScrollerAPI {
       .data(root.links())
       .join('line')
       .classed('link', true)
-      .attr("d", () => d3.line().curve(d3.curveNatural))
+      .attr('d', () => d3.line().curve(d3.curveNatural))
       .attr('x1', function (d) {
         return d.source.x;
       })
@@ -114,9 +107,7 @@ export class ScrollerAPI {
       .transition()
       .duration(2000)
       .attr('color', 'black')
-      .style('opacity', 0.5)
-      
-
+      .style('opacity', 0.5);
 
     // Nodes
     const nodes = this.svg
@@ -160,21 +151,9 @@ export class ScrollerAPI {
       .transition()
       .duration(2000)
       .style('opacity', 1);
-
-    // const link = d3.linkHorizontal()({
-    //   source: [450, 410],
-    //   target: [250, 610]
-    // })
-
-    // this.svg.append('path')
-    //   .attr('d', link)
-    //   .attr('stroke', 'black')
-    //   .attr('fill', 'none')
-
   }
 
   draw1() {
-    console.log('draw1', this);
     d3.select('#vis')
       .selectAll('.circle1')
       .transition()
@@ -190,12 +169,10 @@ export class ScrollerAPI {
     d3.selectAll('rect.node').style('fill', '#808080');
 
     function triggerTransitionDelay() {
-      console.log('triggered');
       d3.selectAll('.atoms circle')
         .transition()
         .duration(200)
         .attr('opacity', 0)
-        // .attr("cy", 600)
         .delay(function (i) {
           return i.x * 3;
         });
@@ -230,29 +207,26 @@ export class ScrollerAPI {
   }
 
   draw2() {
-    console.log('draw2', this);
-
     const reset = () => {
       this.svg.selectAll('.tree').attr('opacity', 1);
       this.svg.selectAll('.treeGraph').attr('opacity', 0);
-      this.svg.selectAll('.treeCircle')
-      .transition()
-      .duration(200)
-      .attr('opacity', 0);
+      this.svg
+        .selectAll('.treeCircle')
+        .transition()
+        .duration(200)
+        .attr('opacity', 0);
       this.draw4();
-    }
+    };
 
     if (this.currentScreen > 2) {
       reset();
     }
-  
+
     function triggerTransitionDelay() {
-      console.log('triggered');
       d3.selectAll('.atoms circle')
         .transition()
         .duration(200)
         .attr('opacity', 0.7)
-        // .attr("cy", 600)
         .delay(function (i) {
           return i.x * 1;
         });
@@ -280,7 +254,6 @@ export class ScrollerAPI {
       }
     }
 
-
     const blink = () => {
       if (this.runBlink) {
         d3.selectAll('rect.node')
@@ -293,8 +266,7 @@ export class ScrollerAPI {
           .style('fill', '#FFA000')
           .on('end', blink);
       } else {
-        d3.selectAll('rect.node')
-        .style('fill', '#808080')
+        d3.selectAll('rect.node').style('fill', '#808080');
       }
     };
 
@@ -311,12 +283,9 @@ export class ScrollerAPI {
           .style('fill', '#051522')
           .on('end', blink2);
       } else {
-        d3.selectAll('rect.node')
-        .style('fill', '#808080')
+        d3.selectAll('rect.node').style('fill', '#808080');
       }
-
     };
-
 
     triggerTransitionDelay();
     this.runBlink = true;
@@ -328,11 +297,8 @@ export class ScrollerAPI {
 
   draw3() {
     const canvas = d3.selectAll('.everything');
-    console.log(canvas.nodes());
     let p0 = [this.width / 2, 425, 850];
-    let p1 = [this.width / 6 + 5, 600, 80];
-
-    //280
+    let p1 = [this.width / 6 + 20, 600, 120];
 
     const center = [this.width / 2, this.height / 2];
     const i = d3.interpolateZoom(p0, p1);
@@ -362,19 +328,19 @@ export class ScrollerAPI {
       })
       .on('end', () => {
         this.svg
-        .selectAll('.treeCircle')
-        .transition()
-        .duration(200)
-        .attr('opacity', 1);
+          .selectAll('.treeCircle')
+          .transition()
+          .duration(200)
+          .attr('opacity', 1);
 
         this.svg.selectAll('.tree').attr('opacity', 0);
         this.svg.selectAll('.treeGraph').attr('opacity', 1);
 
         this.svg
-        .selectAll('.atoms circle')
-        .transition()
-        .duration(200)
-        .attr('opacity', 0);
+          .selectAll('.atoms circle')
+          .transition()
+          .duration(200)
+          .attr('opacity', 0);
       });
 
     this.currentScreen = 3;
@@ -382,9 +348,8 @@ export class ScrollerAPI {
 
   draw4() {
     const canvas = d3.selectAll('.everything');
-    console.log(canvas.nodes());
     let p1 = [this.width / 2, 425, 850];
-    let p0 = [this.width / 6 + 5, 600, 80];
+    let p0 = [this.width / 6 + 20, 600, 120];
 
     const center = [this.width / 2, this.height / 2];
     const i = d3.interpolateZoom(p0, p1);
@@ -401,6 +366,25 @@ export class ScrollerAPI {
         ')'
       );
     };
+    this.svg.selectAll('.treeCircle')
+    .transition()
+    .duration(200)
+    .attr('opacity', 0);
+    this.svg
+      .selectAll('.atoms circle:nth-child(1)')
+      .transition()
+      .duration(300)
+      .attr('opacity', 1);
+    this.svg
+      .selectAll('.atoms circle:nth-child(3)')
+      .transition()
+      .duration(300)
+      .attr('opacity', 1);
+    this.svg
+      .selectAll('.atoms circle:nth-child(5)')
+      .transition()
+      .duration(300)
+      .attr('opacity', 1);
 
     canvas
       .attr('transform', transform(p0))
@@ -413,21 +397,8 @@ export class ScrollerAPI {
         };
       })
       .on('end', () => {
-        this.svg.selectAll('.treeCircle').attr('opacity', 0);
-        this.svg.selectAll('.atoms circle:nth-child(1)')
-        .transition()
-        .duration(200)
-        .attr('opacity', 1)
-        this.svg.selectAll('.atoms circle:nth-child(3)')
-        .transition()
-        .duration(200)
-        .attr('opacity', 1)
-        this.svg.selectAll('.atoms circle:nth-child(5)')
-        .transition()
-        .duration(200)
-        .attr('opacity', 1)
-      })
-      ;
+
+      });
 
     canvas.call(transition, 10, 10);
 
@@ -447,7 +418,6 @@ export class ScrollerAPI {
     ];
 
     const fullcircle = this.svg.append('g').attr('class', 'atoms');
-    // .attr('transform', 'translate(200,200)')
 
     fullcircle
       .selectAll('mycircles')
@@ -493,23 +463,6 @@ export class ScrollerAPI {
   }
 
   loadDrawing3() {
-    // this.svg
-    //   .append('circle')
-    //   .attr('class', 'zoomedCircle')
-    //   .attr('cx', 400)
-    //   .attr('cy', 600)
-    //   .attr('r', 17)
-    //   .style('fill', 'black')
-    //   .attr('opacity', 1);
-    // FINAL STATE
-    // this.svg
-    // .append('circle')
-    //   .attr('class', 'circleZoom')
-    //   .attr('cx', 500)
-    //   .attr('cy', 400)
-    //   .attr('r', 250)
-    //   .style('fill', 'black')
-    //   .attr('opacity', 1);
   }
 
   loadDrawing4() {
@@ -565,7 +518,7 @@ export class ScrollerAPI {
     const link = location
       .append('g')
       .attr('stroke', '#999')
-      .attr('stroke-opacity', 0.6)
+      .attr('stroke-opacity', 0.7)
       .selectAll('line')
       .data(links)
       .join('line')
@@ -574,12 +527,12 @@ export class ScrollerAPI {
     const node = location
       .append('g')
       .attr('stroke', '#fff')
-      .attr('stroke-width', 0.0001)
+      .attr('stroke-width', 0.1)
+      .attr('fill', 'orange')
       .selectAll('circle')
       .data(nodes)
       .join('circle')
-      .attr('r', 0.2)
-      .attr('fill', color)
+      .attr('r', 0.28)
       .call(drag(simulation));
 
     simulation.on('tick', () => {
@@ -641,7 +594,7 @@ export class ScrollerAPI {
       .append('g')
       .attr('class', 'treeGraph')
       .attr('opacity', 0)
-      .attr('transform', 'translate(400,300)');
+      .attr('transform', 'translate(600,600)');
 
     const link = location
       .append('g')
@@ -677,11 +630,114 @@ export class ScrollerAPI {
     });
   }
 
+  loadDrawing6() {
+    const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+    const simulation = d3
+      .forceSimulation()
+      .force(
+        'link',
+        d3.forceLink().id(function (d) {
+          return d.id;
+        })
+      )
+      .force('charge', d3.forceManyBody())
+
+    d3.json('src/api/miserables.json')
+    .then((graph) => {
+      const location = this.svg
+      .append('g')
+      .attr('class', 'treeGraph')
+      .attr('opacity', 0)
+      .attr('transform', `translate(${this.width/3},600)`);
+
+      const link = location
+        .append('g')
+        .attr('class', 'links')
+        .selectAll('line')
+        .data(graph.links)
+        .enter()
+        .append('line')
+        .attr('stroke', '#999')
+        .attr('stroke-width', function (d) {
+          return Math.sqrt(d.value);
+        });
+
+      var node = location
+        .append('g')
+        .attr('class', 'nodes')
+        .selectAll('circle')
+        .data(graph.nodes)
+        .enter()
+        .append('circle')
+        .attr('r', 5)
+        .attr('fill', function (d) {
+          return color(d.group);
+        })
+        .call(
+          d3
+            .drag()
+            .on('start', dragstarted)
+            .on('drag', dragged)
+            .on('end', dragended)
+        );
+
+      node.append('title').text(function (d) {
+        return d.id;
+      });
+
+      simulation.nodes(graph.nodes).on('tick', ticked);
+
+      simulation.force('link').links(graph.links);
+
+      function ticked() {
+        link
+          .attr('x1', function (d) {
+            return d.source.x;
+          })
+          .attr('y1', function (d) {
+            return d.source.y;
+          })
+          .attr('x2', function (d) {
+            return d.target.x;
+          })
+          .attr('y2', function (d) {
+            return d.target.y;
+          });
+
+        node
+          .attr('cx', function (d) {
+            return d.x;
+          })
+          .attr('cy', function (d) {
+            return d.y;
+          });
+      }
+    })
+
+    function dragstarted(event, d) {
+      if (!event.active) simulation.alphaTarget(0.3).restart();
+      d.fx = d.x;
+      d.fy = d.y;
+    }
+
+    function dragged(event, d) {
+      d.fx = event.x;
+      d.fy = event.y;
+    }
+
+    function dragended(event, d) {
+      if (!event.active) simulation.alphaTarget(0);
+      d.fx = null;
+      d.fy = null;
+    }
+  }
+
   drawInitial() {
     this.loadDrawing1();
     this.loadDrawing2();
     this.loadDrawing3();
     this.loadDrawing4();
-    this.loadDrawing5();
+    this.loadDrawing6();
   }
 }

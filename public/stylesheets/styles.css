@@ -8,7 +8,7 @@ html {
     height: 100%;
     margin: 0px;
     padding: 0px;
-    overflow-x: hidden; 
+    /* overflow-x: hidden;  */
 }
 
 body {
@@ -82,11 +82,11 @@ body {
   height: auto;
   padding: 10%;
 }
-
+/* 
 #demo {
   padding: 100px;
   height: 1000px;
-}
+} */
 
 #footer {
   padding-top: 100px;
@@ -183,6 +183,7 @@ body {
   margin-right: 50px;
   font-size: 20px;
   margin-left: 30px;
+  height: 2500px;
 }
 
 
@@ -204,11 +205,12 @@ body {
     justify-content: space-around; */
 }
 
-.step:last-child {
-    height: 1000px;
-}
+/* .step:last-child {
+    margin-bottom: 100px;
+} */
 
-#graphic {
+#demo {
+  overflow-x: initial;
   margin: auto;
   /* width: 1500px; */
   text-align: justify;
@@ -229,7 +231,7 @@ body {
   width: 30%;
   /* transform: translateX(0); */
   /* height: 100%; */
-  /* height: 1000px; */
+  /* height: 900px; */
   /* width: 1000px; */
 }
 

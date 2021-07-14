@@ -76,7 +76,6 @@ const Demo = () => {
         sign
       );
       scrolledSections.forEach((i) => {
-        console.log(i);
         activationFunctions[i]();
       });
 
@@ -93,7 +92,7 @@ const Demo = () => {
 
   return (
     <>
-      <div id="graphic">
+      <div id="demo">
         <div id="sections">
           <section className="step">
             <p>
@@ -128,15 +127,9 @@ const Demo = () => {
               state updates, leading to meaningful performance and user
               experience benefits compared to other GraphQL clients.
             </p>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+            <br/>
+            <br/>
+            <span></span><span></span><span></span><span></span>
           </section>
         </div>
         <div id="vis"></div>
