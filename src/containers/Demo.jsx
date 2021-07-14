@@ -6,6 +6,22 @@ import * as d3 from 'd3';
 export const PROPORTION_RIGHT = 0.6;
 export const PROPORTION_LEFT = 0.3;
 
+const RANGES = {
+  1000: 1500,
+  2000: 2500,
+  3000: 3500,
+  4000: 4500,
+}
+
+function getSomethingRelatedToWidth(width) {
+  for (const [key, value] of Object.entries(RANGES)) {
+    if (width <= key) {
+      return value;
+    }
+  }
+  return 5000;
+}
+
 function useWindowSize() {
   const [size, setSize] = useState([window.innerWidth * PROPORTION_RIGHT, window.innerHeight]);
   useLayoutEffect(() => {

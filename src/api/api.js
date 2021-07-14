@@ -178,13 +178,13 @@ export class ScrollerAPI {
     d3.select('#vis')
       .selectAll('.circle1')
       .transition()
-      .duration(500)
+      .duration(200)
       .attr('opacity', 0);
 
     d3.select('#vis')
       .selectAll('.circle2')
       .transition()
-      .duration(500)
+      .duration(200)
       .attr('opacity', 1);
 
     d3.selectAll('rect.node').style('fill', '#808080');
@@ -193,7 +193,7 @@ export class ScrollerAPI {
       console.log('triggered');
       d3.selectAll('.atoms circle')
         .transition()
-        .duration(500)
+        .duration(200)
         .attr('opacity', 0)
         // .attr("cy", 600)
         .delay(function (i) {
@@ -237,7 +237,7 @@ export class ScrollerAPI {
       this.svg.selectAll('.treeGraph').attr('opacity', 0);
       this.svg.selectAll('.treeCircle')
       .transition()
-      .duration(500)
+      .duration(200)
       .attr('opacity', 0);
       this.draw4();
     }
@@ -250,11 +250,11 @@ export class ScrollerAPI {
       console.log('triggered');
       d3.selectAll('.atoms circle')
         .transition()
-        .duration(500)
+        .duration(200)
         .attr('opacity', 0.7)
         // .attr("cy", 600)
         .delay(function (i) {
-          return i.x * 3;
+          return i.x * 1;
         });
 
       let mode = 0;
@@ -329,8 +329,10 @@ export class ScrollerAPI {
   draw3() {
     const canvas = d3.selectAll('.everything');
     console.log(canvas.nodes());
-    let p0 = [405, 425, 850];
-    let p1 = [250, 600, 80];
+    let p0 = [this.width / 2, 425, 850];
+    let p1 = [this.width / 6 + 5, 600, 80];
+
+    //280
 
     const center = [this.width / 2, this.height / 2];
     const i = d3.interpolateZoom(p0, p1);
@@ -351,8 +353,8 @@ export class ScrollerAPI {
     canvas
       .attr('transform', transform(p0))
       .transition()
-      .delay(250)
-      .duration(i.duration * 2)
+      .delay(100)
+      .duration(i.duration * 0.5)
       .attrTween('transform', function () {
         return function (t) {
           return transform(i(t));
@@ -362,7 +364,7 @@ export class ScrollerAPI {
         this.svg
         .selectAll('.treeCircle')
         .transition()
-        .duration(500)
+        .duration(200)
         .attr('opacity', 1);
 
         this.svg.selectAll('.tree').attr('opacity', 0);
@@ -371,7 +373,7 @@ export class ScrollerAPI {
         this.svg
         .selectAll('.atoms circle')
         .transition()
-        .duration(500)
+        .duration(200)
         .attr('opacity', 0);
       });
 
@@ -379,12 +381,10 @@ export class ScrollerAPI {
   }
 
   draw4() {
-    console.log('draw 4');
-
     const canvas = d3.selectAll('.everything');
     console.log(canvas.nodes());
-    let p1 = [405, 425, 850];
-    let p0 = [250, 600, 80];
+    let p1 = [this.width / 2, 425, 850];
+    let p0 = [this.width / 6 + 5, 600, 80];
 
     const center = [this.width / 2, this.height / 2];
     const i = d3.interpolateZoom(p0, p1);
@@ -405,8 +405,8 @@ export class ScrollerAPI {
     canvas
       .attr('transform', transform(p0))
       .transition()
-      .delay(250)
-      .duration(i.duration * 2)
+      .delay(200)
+      .duration(i.duration * 0.5)
       .attrTween('transform', function () {
         return function (t) {
           return transform(i(t));
@@ -416,15 +416,15 @@ export class ScrollerAPI {
         this.svg.selectAll('.treeCircle').attr('opacity', 0);
         this.svg.selectAll('.atoms circle:nth-child(1)')
         .transition()
-        .duration(1000)
+        .duration(200)
         .attr('opacity', 1)
         this.svg.selectAll('.atoms circle:nth-child(3)')
         .transition()
-        .duration(1000)
+        .duration(200)
         .attr('opacity', 1)
         this.svg.selectAll('.atoms circle:nth-child(5)')
         .transition()
-        .duration(1000)
+        .duration(200)
         .attr('opacity', 1)
       })
       ;
@@ -439,12 +439,11 @@ export class ScrollerAPI {
     const height = this.height;
     const radius = 20;
 
-    console.log(width);
     const t0 = Date.now();
 
     const circles = [
-      { x: 250, y: 600, color: '#FFCA28' },
-      { x: 650, y: 600, color: '#051522' },
+      { x: this.width / 4, y: 600, color: '#FFCA28' },
+      { x: this.width / 2, y: 600, color: '#051522' },
     ];
 
     const fullcircle = this.svg.append('g').attr('class', 'atoms');
@@ -561,7 +560,7 @@ export class ScrollerAPI {
       .append('g')
       .attr('class', 'treeCircle')
       .attr('opacity', 0)
-      .attr('transform', 'translate(250,600)');
+      .attr('transform', `translate(${this.width / 4},600)`);
 
     const link = location
       .append('g')

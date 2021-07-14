@@ -3,8 +3,8 @@ export const data = {
     {
       id: 'Structural basis of PROTAC cooperative recognition for selective protein degradation.',
       group: 'Cited Works',
-      radius: 2,
-      citing_patents_count: 2,
+      radius: 15,
+      citing_patents_count: 10,
     },
     {
       id: 'The influence of rough lipopolysaccharide structure on molecular interactions with mammalian antimicrobial peptides',
