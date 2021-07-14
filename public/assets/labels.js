@@ -45,7 +45,7 @@ export default {
     ],
   },
   footer: {
-    linkSections: ["Product", "Getting Started", "Follow Us"],
+    linkSections: ["Product", "Getting Started", "Social Media"],
     links: [
       [
         {
