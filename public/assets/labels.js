@@ -4,9 +4,32 @@ export default {
     headTitle: "High performance meets scalable flexibility",
     headSubtitle: "GraphQL client designed for Jotai",
     btnStart: "Get Started",
+    npmPackageURL: "https://www.npmjs.com/package/atomiql",
   },
   about:
     "AtomiQL is the first GraphQL client that allows developers to reap the benefits of type-safety, UI and data layer logic separation, and a clean query language interface, while also maximizing front-end rendering performance with atomic state management. Especially with this increasing nature of frontend complexity, shifting towards atomic state management with the Jotai library can significantly reduce page load time and improve user experience through eliminating unnecessary re-renders.",
+  docs: {
+      nav: [
+        {
+            class: "main", 
+            text: "Introduction"
+        },
+        {
+            class: "sub",
+            text: "Setup",
+            main: "Introduction"
+        }
+      ],
+      content: {
+        title: "Introduction", 
+        text: [
+            {
+                class: "text", 
+                
+            }
+        ]
+      }
+  },
   team: {
     title: "Meet the Team",
     members: [
@@ -64,11 +87,11 @@ export default {
       [
         {
           title: "Github",
-          linkURL: "/",
+          linkURL: "https://github.com/oslabs-beta/AtomiQL",
         },
         {
           title: "NPM Package",
-          linkURL: "/",
+          linkURL: "https://www.npmjs.com/package/atomiql",
         },
       ],
       [

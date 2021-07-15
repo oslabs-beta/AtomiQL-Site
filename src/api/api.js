@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import { transition, event } from 'd3';
-import { data } from '../data/graph';
-import { tree } from '../data/graph2';
+import { data } from '../../public/data/graph';
+import { tree } from '../../public/data/graph2';
 
 export class ScrollerAPI {
   constructor(width, height) {
@@ -647,7 +647,7 @@ export class ScrollerAPI {
       )
       .force('charge', d3.forceManyBody())
 
-    d3.json('src/api/miserables.json')
+    d3.json('public/data/miserables.json')
     .then((graph) => {
       const location = this.svg
       .append('g')

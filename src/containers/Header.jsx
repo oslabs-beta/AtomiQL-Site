@@ -31,7 +31,9 @@ class Header extends React.Component {
                 <div className="header-subtitle">
                     {labels.header.headSubtitle}
                 </div>
-                <StyledButton className="btnStart">{labels.header.btnStart}</StyledButton>
+                <StyledButton className="btnStart" href={labels.header.npmPackageURL} target="_blank">
+                    {labels.header.btnStart}
+                </StyledButton>
                 <a href="#about">
                     {<ExpandMoreIcon className="btnExpand" style={{ fontSize: 50 }}/>}
                 </a>
