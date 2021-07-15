@@ -4,13 +4,13 @@ import { data } from '../data/graph';
 import { tree } from '../data/graph2';
 
 export class ScrollerAPI {
-  constructor(width) {
+  constructor(width, height) {
     this.simulation = undefined;
     this.nodes = undefined;
     this.windowWidth = undefined;
     this.margin = { left: 170, top: 50, bottom: 50, right: 50 };
     this.width = width;
-    this.height = 950 - this.margin.top - this.margin.bottom;
+    this.height = height - this.margin.top - this.margin.bottom;
     this.svg = d3
       .select('#vis')
       .append('svg')

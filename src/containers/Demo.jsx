@@ -45,7 +45,7 @@ const Demo = () => {
   }, [width])
 
   useEffect(() => {
-    const visuals = new ScrollerAPI(width);
+    const visuals = new ScrollerAPI(width, height);
     setVisuals(visuals);
     let scroll = scroller().container(d3.select('#graphic'));
     scroll();
@@ -96,8 +96,7 @@ const Demo = () => {
         <div id="sections">
           <section className="step">
             <p>
-              Here’s a react component tree that represents a typical online
-              e-commerce platform leveraging GraphQL.
+              Here’s an illustration of a component tree that represents a React application leveraging GraphQL.
             </p>
           </section>
           <section className="step">
