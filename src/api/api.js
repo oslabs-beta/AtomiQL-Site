@@ -5,6 +5,10 @@ import { tree } from '../data/graph2';
 
 export class ScrollerAPI {
   constructor(width, height) {
+    console.log(width)
+    if (width <= 590) {
+      height = 950;
+    }
     this.simulation = undefined;
     this.nodes = undefined;
     this.windowWidth = undefined;
@@ -122,10 +126,10 @@ export class ScrollerAPI {
       .append('rect')
       .classed('node', true)
       .attr('x', function (d) {
-        return d.x - 30;
+        return d.x - 37;
       })
       .attr('y', function (d) {
-        return d.y;
+        return d.y - 5;
       })
       .attr('r', 4)
       .style('opacity', 0)
@@ -138,7 +142,7 @@ export class ScrollerAPI {
       .style('fill', 'white')
       .style('opacity', 0)
       .attr('font-size', '14px')
-      .attr('font-family', 'Lato')
+      .attr('font-family', 'Roboto')
       .attr('dy', '0.35em')
       .attr('x', function (d) {
         return d.x - 10;
@@ -526,8 +530,8 @@ export class ScrollerAPI {
 
     const node = location
       .append('g')
-      .attr('stroke', '#fff')
-      .attr('stroke-width', 0.1)
+      .attr('stroke', 'red')
+      .attr('stroke-width', 0.05)
       .attr('fill', 'orange')
       .selectAll('circle')
       .data(nodes)
