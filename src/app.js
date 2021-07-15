@@ -59,7 +59,7 @@ class App extends React.Component {
                     </Typography>
                     <StyledTabs>
                         <StyledTab label="About" component={HashLink} to="/#about" />
-                        <StyledTab label="Docs" component={Link} to="/docs" />
+                        <StyledTab label="Docs" component={HashLink} to="/docs#top" />
                         <StyledTab label="Demo" component={HashLink} to="/#demo" />
                         <StyledTab label="Team" component={HashLink} to="/#footer" />
                         <StyledTab label="" icon={<GitHubIcon/>} href="https://github.com/oslabs-beta/AtomiQL" target="_blank" />

@@ -22,6 +22,10 @@ body {
     overflow-x: hidden;
 }
 
+#root {
+    height: 100%;
+}
+
 #header {
     background-color: #051522;
     height: auto;
@@ -81,11 +85,64 @@ body {
   height: auto;
   padding: 10%;
 }
-/* 
-#demo {
-  padding: 100px;
-  height: 1000px;
-} */
+
+#top {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+#docs-nav {
+  width: 210px;
+  height: 100%;
+  background-color: #f0f1f3;
+  padding-top: 120px;
+  padding-left: 120px;
+  position: fixed;
+  font-size: 18px;
+  text-align: left;
+}
+
+#docs-nav a {
+  text-decoration: none;
+  color: black;
+}
+
+#docs-content {
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+  padding-top: 120px;
+  padding-left: 400px;
+  padding-right: 8%;
+  text-align: left;
+}
+
+.docs-title {
+  font-weight: bolder;
+  font-size: 25px;
+  margin-bottom: 50px;
+}
+
+.docs-subtitle {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.docs-code {
+  font-size: 16px;
+  padding: 30px;
+  background-color: #f0f1f3;
+  margin-bottom: 30px;
+  border-left: 10px solid #ffca28;
+  font-family: 'Roboto Mono', sans-serif;
+}
+
+.docs-text {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
 
 #footer {
   padding-top: 100px;
