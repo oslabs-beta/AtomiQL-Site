@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link, react_router_dom } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
 import labels from './../../public/assets/labels.js';
 
 class Docs extends React.Component {
@@ -10,9 +11,9 @@ class Docs extends React.Component {
                     <div id="docs-nav">
                         {labels.docs.nav.map((item) =>
                             <p>
-                                <Link to={"/" + item.toLowerCase().replaceAll(' ', '-')}>
+                                <HashLink to={"/" + item.toLowerCase().replaceAll(' ', '-') + "#top"}>
                                     {item}
-                                </Link>
+                                </HashLink>
                             </p>
                         )}
                     </div>
@@ -23,6 +24,7 @@ class Docs extends React.Component {
                                     <div id={item.toLowerCase().replaceAll(' ', '-')}>
                                         {labels.docs.content[el].map((section) =>
                                             <div className={section.type}>
+                                                {/* {(section.type === "docs-text" || section.type === "docs-code") ? section.text.replaceAll('<br/>', '"<br/>"') : section.text} */}
                                                 {section.text}
                                             </div>
                                         )}
