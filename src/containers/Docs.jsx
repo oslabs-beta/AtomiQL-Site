@@ -1,12 +1,40 @@
 import React from 'react';
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
 import labels from './../../public/assets/labels.js';
 
 class Docs extends React.Component {
     render() {
         return (
-            <div id="docs">
-                docs placeholder
-            </div>
+            <Router>
+                <div id="top">
+                    <div id="docs-nav">
+                        {labels.docs.nav.map((item) =>
+                            <p>
+                                <HashLink to={"/" + item.toLowerCase().replaceAll(' ', '-') + "#top"}>
+                                    {item}
+                                </HashLink>
+                            </p>
+                        )}
+                    </div>
+                    <div id="docs-content">
+                        <Switch>
+                            {labels.docs.nav.map((item, el) =>
+                                <Route path={"/" + item.toLowerCase().replaceAll(' ', '-')}>
+                                    <div id={item.toLowerCase().replaceAll(' ', '-')}>
+                                        {labels.docs.content[el].map((section) =>
+                                            <div className={section.type}>
+                                                {/* {(section.type === "docs-text" || section.type === "docs-code") ? section.text.replaceAll('<br/>', '"<br/>"') : section.text} */}
+                                                {section.text}
+                                            </div>
+                                        )}
+                                    </div>
+                                </Route>
+                            )}
+                        </Switch>
+                    </div>
+                </div>
+            </Router>
         )
     }
 }

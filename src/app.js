@@ -5,7 +5,6 @@ import Header from './containers/Header.jsx';
 import About from './containers/About.jsx';
 import Docs from './containers/Docs.jsx';
 import Demo from './containers/Demo.jsx';
-import RenderCount from './containers/RenderCount.jsx';
 import Footer from './containers/Footer.jsx';
 import './../public/stylesheets/styles.css';
 import { Typography, AppBar, Toolbar, Tabs, Tab } from '@material-ui/core';
@@ -59,7 +58,7 @@ class App extends React.Component {
                     </Typography>
                     <StyledTabs>
                         <StyledTab label="About" component={HashLink} to="/#about" />
-                        <StyledTab label="Docs" component={Link} to="/docs" />
+                        <StyledTab label="Docs" component={HashLink} to="/docs" />
                         <StyledTab label="Demo" component={HashLink} to="/#demo" />
                         <StyledTab label="Team" component={HashLink} to="/#footer" />
                         <StyledTab label="" icon={<GitHubIcon/>} href="https://github.com/oslabs-beta/AtomiQL" target="_blank" />

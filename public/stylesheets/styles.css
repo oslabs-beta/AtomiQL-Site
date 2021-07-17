@@ -11,7 +11,7 @@ html {
 }
 
 body {
-    background-color: #DFDADD;
+    background-color: #FFFFFF;
     text-align: center;
     font-family: 'Roboto', sans-serif;
     font-size: 24px;
@@ -20,6 +20,10 @@ body {
     margin: 0px;
     padding: 0px;
     overflow-x: hidden;
+}
+
+#root {
+    height: 100%;
 }
 
 #header {
@@ -81,11 +85,72 @@ body {
   height: auto;
   padding: 10%;
 }
-/* 
-#demo {
-  padding: 100px;
-  height: 1000px;
-} */
+
+#top {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+#docs-nav {
+  width: 210px;
+  height: 100%;
+  background-color: #f0f1f3;
+  padding-top: 120px;
+  padding-left: 120px;
+  position: fixed;
+  font-size: 18px;
+  text-align: left;
+}
+
+#docs-nav a {
+  text-decoration: none;
+  color: black;
+}
+
+#docs-content {
+  background-color: #ffffff;
+  width: 100%;
+  height: auto;
+  padding-top: 120px;
+  padding-left: 400px;
+  padding-right: 8%;
+  padding-bottom: 100px;
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+.docs-title {
+  font-weight: bolder;
+  font-size: 25px;
+  margin-bottom: 50px;
+}
+
+.docs-subtitle {
+  font-size: 20px;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 0.5px solid #DFDADD;
+}
+
+.docs-code {
+  font-size: 16px;
+  padding: 30px;
+  background-color: #f0f1f3;
+  margin-bottom: 30px;
+  border-left: 10px solid #ffca28;
+  font-family: 'Roboto Mono', sans-serif;
+}
+
+.docs-text {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.docs-end {
+  height: 50px;
+}
 
 #footer {
   padding-top: 100px;
@@ -210,6 +275,7 @@ body {
 } */
 
 #demo {
+  background-color: #DFDADD;
   overflow-x: initial;
   margin: auto;
   /* width: 1500px; */

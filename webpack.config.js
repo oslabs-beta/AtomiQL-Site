@@ -8,7 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
-    // publicPath: '/',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -29,13 +29,17 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    historyApiFallback: true,
+  },
   plugins: [
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, 'public/index.html'),
       filename: 'index.html',
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: path.resolve(__dirname, 'public/assets'), to: 'public/assets' }]
+      patterns: [{ from: path.resolve(__dirname, 'public/assets'), to: 'public/assets' },
+        { from: path.resolve(__dirname, 'public/data'), to: 'public/data' }]
     })
   ],
 };
