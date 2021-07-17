@@ -131,50 +131,64 @@ genRandomTree(N = 300, reverse = false) {
       .transition()
       .duration(2000)
       .attr('color', 'black')
-      .style('opacity', 0.5);
+      .style('opacity', 3);
 
     // Nodes
     const nodes = this.svg
       .select('g.tree')
       .append('g')
       .attr('class', 'nodes')
-      .selectAll('rect.node')
+      .selectAll('circle.node')
       .data(root.descendants())
       .join('g');
 
-    nodes
-      .append('rect')
-      .classed('node', true)
-      .attr('x', function (d) {
-        return d.x - 37;
-      })
-      .attr('y', function (d) {
-        return d.y - 5;
-      })
-      .attr('r', 4)
-      .style('opacity', 0)
-      .transition()
-      .duration(2000)
-      .style('opacity', 1);
 
     nodes
-      .append('text')
-      .style('fill', 'white')
-      .style('opacity', 0)
-      .attr('font-size', '14px')
-      .attr('font-family', 'Roboto')
-      .attr('dy', '0.35em')
-      .attr('x', function (d) {
-        return d.x - 10;
+      .attr("transform", function (d) {
+        return "translate(" + d.x + "," + d.y + ")";
       })
-      .attr('y', function (d) {
-        return d.y + 10;
-      })
-      .attr('color', 'white')
-      .text((d) => d.data.name)
-      .transition()
-      .duration(2000)
-      .style('opacity', 1);
+      .append("circle")
+      .attr("r", 20)
+      .style("fill", "#FFCA28")
+      .attr("stroke", "black")
+      .style("stroke-width", 2)
+      .attr('x', d => d.x)
+      .attr('y', d => d.y)
+
+
+    // nodes
+    //   .append('rect')
+    //   .classed('node', true)
+    //   .attr('x', function (d) {
+    //     return d.x - 37;
+    //   })
+    //   .attr('y', function (d) {
+    //     return d.y - 5;
+    //   })
+    //   .attr('r', 4)
+    //   .style('opacity', 0)
+    //   .transition()
+    //   .duration(2000)
+    //   .style('opacity', 1);
+
+    // nodes
+    //   .append('text')
+    //   .style('fill', 'white')
+    //   .style('opacity', 0)
+    //   .attr('font-size', '14px')
+    //   .attr('font-family', 'Roboto')
+    //   .attr('dy', '0.35em')
+    //   .attr('x', function (d) {
+    //     return d.x - 10;
+    //   })
+    //   .attr('y', function (d) {
+    //     return d.y + 10;
+    //   })
+    //   .attr('color', 'white')
+    //   .text((d) => d.data.name)
+    //   .transition()
+    //   .duration(2000)
+    //   .style('opacity', 1);
   }
 
   draw1() {
@@ -437,7 +451,7 @@ genRandomTree(N = 300, reverse = false) {
     const t0 = Date.now();
 
     const circles = [
-      { x: this.width / 4, y: 600, color: '#FFCA28' },
+      { x: this.width / 4, y: 600, color: '#e59964' },
       { x: this.width / 2, y: 600, color: '#051522' },
     ];
 
