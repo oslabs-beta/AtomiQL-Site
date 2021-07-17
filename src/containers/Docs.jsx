@@ -6,7 +6,7 @@ import labels from './../../public/assets/labels.js';
 class Docs extends React.Component {
     render() {
         return (
-            <Router>
+            <Router basename="/docs">
                 <div id="top">
                     <div id="docs-nav">
                         {labels.docs.nav.map((item) =>
