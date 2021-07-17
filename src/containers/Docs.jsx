@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
 import labels from './../../public/assets/labels.js';
 

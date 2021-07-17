@@ -67,6 +67,10 @@ export default {
           {
             type: "docs-text",
             text: "For more information on creating local resolvers, see the <a href='https://graphql.org/learn/execution/'>GraphQL documentation.</a>"
+          },
+          {
+            type: "docs-end",
+            text: ""
           }
         ],
         [
@@ -182,7 +186,18 @@ export default {
             type: "docs-text",
             text: "The useQuery hook accepts the following parameters:"
           },
-          //table 
+          {
+            type: "docs-text",
+            text: "     • query* (String | DocumentNode): Pass in the GraphQL query string here. You can use either a string or the gql template literal format\n     • input (Object<variables:any, isLocal:boolean>): Pass in an object containing the variables and local query specifications here\n        • variables: Contains any variable input fields in your GraphQL query\n        • isLocal: If true, the request will only access the cache or local data. If the data is not found in either, the data property will be returned as null"
+          },
+          {
+            type: "docs-text",
+            text: "* Required parameter"
+          },
+          {
+            type: "docs-end",
+            text: ""
+          } 
         ],
         [
           {
@@ -265,7 +280,18 @@ export default {
             type: "docs-text",
             text: "The useMutation hook accepts the following parameters:"
           },
-          //table
+          {
+            type: "docs-text",
+            text: "     • query* (String | DocumentNode): Pass in the GraphQL query string here. You can use either a string or the gql template literal format\n     • callback ((arg1: CacheContainer, arg2: AtomData) => void): Pass in a function to dynamically alter the cache and execute any other functionality necessary after your mutation\n        • CacheContainer: refers to the container in which the target atom is cached\n        • AtomData: refers to the updated data from the mutation"
+          },
+          {
+            type: "docs-text",
+            text: "* Required parameter"
+          },
+          {
+            type: "docs-end",
+            text: ""
+          }
         ]
       ]
   },
