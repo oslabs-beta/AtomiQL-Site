@@ -57,23 +57,23 @@ class App extends React.Component {
                         <a href="/" style={{ color: "inherit", textDecoration: "none", paddingLeft: "30px" }}>AtomiQL</a>
                     </Typography>
                     <StyledTabs>
-                        <StyledTab label="About" component={HashLink} to="/gh-pages-url#about" />
-                        <StyledTab label="Docs" component={HashLink} to="/gh-pages-url/docs" />
-                        <StyledTab label="Demo" component={HashLink} to="/gh-pages-url#demo" />
-                        <StyledTab label="Team" component={HashLink} to="/gh-pages-url#footer" />
+                        <StyledTab label="About" component={HashLink} to="/#about" />
+                        <StyledTab label="Docs" component={HashLink} to="/docs" />
+                        <StyledTab label="Demo" component={HashLink} to="/#demo" />
+                        <StyledTab label="Team" component={HashLink} to="/#footer" />
                         <StyledTab label="" icon={<GitHubIcon/>} href="https://github.com/oslabs-beta/AtomiQL" target="_blank" />
                     </StyledTabs>
                 </Toolbar>
             </StyledAppBar>
 
         <Switch>
-          <Route exact path="/gh-pages-url">
+          <Route exact path="/">
             <Header />
             <About />
             <Demo />
             <Footer />
           </Route> 
-          <Route path="/gh-pages-url/docs">
+          <Route path="/docs">
             <Docs />
           </Route>
         </Switch>
