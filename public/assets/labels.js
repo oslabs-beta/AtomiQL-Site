@@ -66,7 +66,7 @@ export default {
           },
           {
             type: "docs-text",
-            text: "For more information on creating local resolvers, see the <a href='https://graphql.org/learn/execution/'>GraphQL documentation.</a>"
+            text: "For more information on creating local resolvers, see the GraphQL documentation."
           },
           {
             type: "docs-end",
@@ -338,15 +338,15 @@ export default {
       [
         {
           title: "Getting Started",
-          linkURL: "https://atomiql.com/docs#/getting-started#top",
+          linkURL: "https://atomiql.com/#/docs/getting-started#top",
         },
         {
           title: "Queries",
-          linkURL: "https://atomiql.com/docs#/queries#top",
+          linkURL: "https://atomiql.com/#/docs/queries#top",
         },
         {
           title: "Mutations",
-          linkURL: "https://atomiql.com/docs#/mutations#top",
+          linkURL: "https://atomiql.com/#/docs/mutations#top",
         }
       ],
       [
@@ -362,7 +362,7 @@ export default {
       [
         {
           title: "LinkedIn",
-          linkURL: "/",
+          linkURL: "https://www.linkedin.com/company/atomiql",
         },
         {
           title: "Medium",
