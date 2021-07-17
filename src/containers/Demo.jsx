@@ -101,7 +101,7 @@ const Demo = () => {
           </section>
           <section className="step">
             <p>
-              Components rely on data props in order to properly display the
+              Components rely on cached data in order to properly display the
               correct information to the end user, and those subscribed to the
               React state may re-render on state updates even if the specific
               data they rely on has not changed. Using AtomiQL, components

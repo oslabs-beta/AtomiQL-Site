@@ -5,10 +5,18 @@ import { tree } from '../../public/data/graph2';
 
 export class ScrollerAPI {
   constructor(width, height) {
-    console.log(width)
     if (width <= 590) {
       height = 950;
     }
+
+    if (width <= 400) {
+      height = 500;
+    }
+
+    if (height >= 1200) {
+      height = 1175;
+    }
+
     this.simulation = undefined;
     this.nodes = undefined;
     this.windowWidth = undefined;
@@ -31,6 +39,18 @@ export class ScrollerAPI {
     this.currentScreen = 1;
     this.runBlink = false;
   }
+
+genRandomTree(N = 300, reverse = false) {
+  return {
+    nodes: [...Array(N).keys()].map(i => ({ id: i })),
+      links: [...Array(N).keys()]
+    .filter(id => id)
+    .map(id => ({
+      [reverse ? 'target' : 'source']: id,
+      [reverse ? 'source' : 'target']: Math.round(Math.random() * (id-1))
+    }))
+  };
+}
 
   setWidth(width) {
     this.width = width;
