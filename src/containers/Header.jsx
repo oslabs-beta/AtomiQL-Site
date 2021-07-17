@@ -1,5 +1,7 @@
 import React from 'react';
 import labels from './../../public/assets/labels.js';
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -34,9 +36,11 @@ class Header extends React.Component {
                 <StyledButton className="btnStart" href={labels.header.npmPackageURL} target="_blank">
                     {labels.header.btnStart}
                 </StyledButton>
-                <a href="#about">
-                    {<ExpandMoreIcon className="btnExpand" style={{ fontSize: 50 }}/>}
-                </a>
+                <Router>
+                    <HashLink to="/#about" >
+                        {<ExpandMoreIcon className="btnExpand" style={{ fontSize: 50 }}/>}
+                    </HashLink>
+                </Router>
             </div>
         )
     }

@@ -22,11 +22,11 @@ export default {
           },
           {
             type: "docs-text",
-            text: "To walk through this tutorial, we recommend you either create a new React project locally with Create React App, or create a new React sandbox on CodeSandbox. Once your React application is set up, simply install the packages you’ll need."
+            text: "To walk through this tutorial, we recommend you either create a new React project locally with Create React App or create a new React sandbox on CodeSandbox. Once your React application is set up, simply install the packages you’ll need."
           },
           {
             type: "docs-code",
-            text: "$ npm install atomiql jotai graphql-request"
+            text: "$ npm install atomiql jotai"
           },
           {
             type: "docs-text",
@@ -35,10 +35,6 @@ export default {
           {
             type: "docs-text",
             text: "jotai: This package contains the atomic state management which AtomiQL uses to store query results as your application’s state."
-          },
-          {
-            type: "docs-text",
-            text: "graphql-request: This package contains logic to make and receive GraphQL queries to your server."
           },
           {
             type: "docs-subtitle",
@@ -54,7 +50,7 @@ export default {
           },
           {
             type: "docs-text",
-            text: "Next, we’ll wrap our React <App /> with AtomiProvider around all stateful components connected to GraphQL."
+            text: "Next, we’ll wrap our React <App /> with AtomiProvider around all stateful components connected to GraphQL. You can pass in the url of your server along with your schemas and local resolvers into the provider component through a client parameter like so:"
           },
           {
             type: "docs-code",
@@ -66,7 +62,7 @@ export default {
           },
           {
             type: "docs-text",
-            text: "For more information on creating local resolvers, see the GraphQL documentation."
+            text: "For more information on creating local resolvers, see the GraphQL documentation at https://graphql.org."
           },
           {
             type: "docs-end",
@@ -116,7 +112,7 @@ export default {
           },
           {
             type: "docs-text",
-            text: "AtomiQL also supports dynamic queries through the “variables”' property passed in through the second useQuery parameter. For example, if your application only needs the data for one particular pet, you could edit the above GET_PETS query to include a variable input field."
+            text: "AtomiQL also supports dynamic queries through the “variables” property passed in through the second useQuery parameter. For example, if your application only needs the data for one particular pet, you could edit the above GET_PETS query to include a variable input field."
           },
           {
             type: "docs-code",
