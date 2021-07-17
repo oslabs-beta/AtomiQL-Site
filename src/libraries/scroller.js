@@ -7,7 +7,7 @@ export default function scroller() {
   let sectionPositions;
 
   let currentIndex = -1;
-  let containerStart = 1000;
+  let containerStart = 1100;
 
   function scroll() {
     d3.select(window)
