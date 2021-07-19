@@ -248,7 +248,7 @@ body {
   font-size: 24px;
   /* margin-left: 30px; */
   padding-left: 10%;
-  height: 2500px;
+  height: 2000px;
 }
 
 
@@ -270,9 +270,9 @@ body {
     justify-content: space-around; */
 }
 
-/* .step:last-child {
-    margin-bottom: 100px;
-} */
+.step:last-child {
+  margin-bottom: 1000px;
+}
 
 #demo {
   background-color: #DFDADD;
@@ -284,7 +284,7 @@ body {
   flex-direction: row;
   align-items: top;
   justify-content: space-around;
-  padding-top: 100px;
+  padding-top: 0px;
   padding-bottom: 100px;
   /* position: relative; */
 }
@@ -297,6 +297,7 @@ body {
   z-index: 1;
   margin-left: 0px;
   width: 30%;
+  margin-top: 0px;
   padding-right: 10%;
   /* transform: translateX(0); */
   /* height: 100%; */
