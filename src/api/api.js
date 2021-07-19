@@ -1,14 +1,27 @@
 import * as d3 from 'd3';
 import { transition, event } from 'd3';
-import { data } from '../data/graph';
-import { tree } from '../data/graph2';
+import { data } from '../../public/data/graph';
+import { tree } from '../../public/data/graph2';
 
 export class ScrollerAPI {
   constructor(width, height) {
-    console.log(width)
-    if (width <= 590) {
-      height = 950;
+    if (width <= 1000) {
+      height = 850;
     }
+
+    if (width >= 1400) {
+      height = 850;
+    }
+
+
+    if (width <= 400) {
+      height = 500;
+    }
+
+    // if (height >= 1200) {
+    //   height = 1175;
+    // }
+
     this.simulation = undefined;
     this.nodes = undefined;
     this.windowWidth = undefined;
@@ -86,7 +99,7 @@ export class ScrollerAPI {
     // Links
     this.svg
       .append('g')
-      .attr('transform', `translate(20,100)`)
+      .attr('transform', `translate(20,200)`)
       .attr('class', 'tree')
       .append('g')
       .attr('class', 'links')
@@ -115,27 +128,49 @@ export class ScrollerAPI {
 
     // Nodes
     const nodes = this.svg
-      .select('g.tree')
-      .append('g')
-      .attr('class', 'nodes')
-      .selectAll('rect.node')
-      .data(root.descendants())
-      .join('g');
+    .select('g.tree')
+    .append('g')
+    .attr('class', 'nodes')
+    .selectAll('circle.node')
+    .data(root.descendants())
+    .join('g');
+
 
     nodes
-      .append('rect')
-      .classed('node', true)
-      .attr('x', function (d) {
-        return d.x - 37;
+      .attr("transform", function (d) {
+        return "translate(" + d.x + "," + d.y + ")";
       })
-      .attr('y', function (d) {
-        return d.y - 5;
-      })
-      .attr('r', 4)
-      .style('opacity', 0)
-      .transition()
-      .duration(2000)
-      .style('opacity', 1);
+      .append("circle")
+      .attr("r", 20)
+      .style("fill", "#FFCA28")
+      .attr("stroke", "black")
+      .style("stroke-width", 2)
+      .attr('x', d => d.x)
+      .attr('y', d => d.y)
+
+
+    // const nodes = this.svg
+    //   .select('g.tree')
+    //   .append('g')
+    //   .attr('class', 'nodes')
+    //   .selectAll('circle.node')
+    //   .data(root.descendants())
+    //   .join('g');
+
+    // nodes
+    //   .append('circle')
+    //   .classed('node', true)
+    //   .attr('x', function (d) {
+    //     return d.x - 37;
+    //   })
+    //   .attr('y', function (d) {
+    //     return d.y - 5;
+    //   })
+    //   .attr('r', 4)
+    //   .style('opacity', 0)
+    //   .transition()
+    //   .duration(2000)
+    //   .style('opacity', 1);
 
     nodes
       .append('text')
@@ -152,9 +187,6 @@ export class ScrollerAPI {
       })
       .attr('color', 'white')
       .text((d) => d.data.name)
-      .transition()
-      .duration(2000)
-      .style('opacity', 1);
   }
 
   draw1() {
@@ -260,34 +292,34 @@ export class ScrollerAPI {
 
     const blink = () => {
       if (this.runBlink) {
-        d3.selectAll('rect.node')
-          .filter((d) => d.data.name === 'C2' || d.data.name === 'B2')
+        d3.selectAll('.nodes circle')
+          .filter((d) => d.data && (d.data.name === 'C2' || d.data.name === 'B2'))
           .transition()
           .duration(500)
-          .style('fill', '#808080')
+          .style('fill', '#FFCA28')
           .transition()
           .duration(500)
-          .style('fill', '#FFA000')
+          .style('fill', '#e59964')
           .on('end', blink);
       } else {
-        d3.selectAll('rect.node').style('fill', '#808080');
+        d3.selectAll('.nodes circle').style('fill', '#FFCA28');
       }
     };
 
     const blink2 = () => {
       if (this.runBlink) {
-        d3.selectAll('rect.node')
-          .filter((d) => d.data.name === 'D3')
+        d3.selectAll('.nodes circle')
+          .filter((d) => d.data && d.data.name === 'D3')
           .transition()
           .delay(1000)
           .duration(500)
-          .style('fill', '#808080')
+          .style('fill', '#FFCA28')
           .transition()
           .duration(500)
           .style('fill', '#051522')
           .on('end', blink2);
       } else {
-        d3.selectAll('rect.node').style('fill', '#808080');
+        d3.selectAll('.nodes circle').style('fill', '#FFCA28');
       }
     };
 
@@ -337,14 +369,15 @@ export class ScrollerAPI {
           .duration(200)
           .attr('opacity', 1);
 
-        this.svg.selectAll('.tree').attr('opacity', 0);
-        this.svg.selectAll('.treeGraph').attr('opacity', 1);
-
         this.svg
           .selectAll('.atoms circle')
           .transition()
           .duration(200)
           .attr('opacity', 0);
+
+        // this.svg
+        //   .selectAll('.tree')
+        //   .attr('transform', 'translate(0,350)')
       });
 
     this.currentScreen = 3;
@@ -375,17 +408,17 @@ export class ScrollerAPI {
     .duration(200)
     .attr('opacity', 0);
     this.svg
-      .selectAll('.atoms circle:nth-child(1)')
+      .selectAll('.atoms circle')
       .transition()
       .duration(300)
       .attr('opacity', 1);
     this.svg
-      .selectAll('.atoms circle:nth-child(3)')
+      .selectAll('.atoms circle')
       .transition()
       .duration(300)
       .attr('opacity', 1);
     this.svg
-      .selectAll('.atoms circle:nth-child(5)')
+      .selectAll('.atoms circle')
       .transition()
       .duration(300)
       .attr('opacity', 1);
@@ -401,7 +434,6 @@ export class ScrollerAPI {
         };
       })
       .on('end', () => {
-
       });
 
     canvas.call(transition, 10, 10);
@@ -417,7 +449,7 @@ export class ScrollerAPI {
     const t0 = Date.now();
 
     const circles = [
-      { x: this.width / 4, y: 600, color: '#FFCA28' },
+      { x: this.width / 4, y: 600, color: '#e59964' },
       { x: this.width / 2, y: 600, color: '#051522' },
     ];
 
@@ -647,7 +679,7 @@ export class ScrollerAPI {
       )
       .force('charge', d3.forceManyBody())
 
-    d3.json('src/api/miserables.json')
+    d3.json('public/data/miserables.json')
     .then((graph) => {
       const location = this.svg
       .append('g')
@@ -742,6 +774,6 @@ export class ScrollerAPI {
     this.loadDrawing2();
     this.loadDrawing3();
     this.loadDrawing4();
-    this.loadDrawing6();
+    // this.loadDrawing6();
   }
 }
